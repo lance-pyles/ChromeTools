@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+
+<script type="text/javascript" src="/Pages/Settings/settings.js"></script>
+<script type="text/javascript" src="index.js"></script>
+<script type="text/javascript" src="/Pages/WindowsTabs/windowsTabs.js"></script>
+<script type="text/javascript" src="/Pages/About/about.js"></script>
+<script type="text/javascript" src="/Pages/PasswordGenerator/passwordGenerator.js"></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            /* Style the buttons inside the tab */
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+    <link href="/mystyle.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <h2>Chrome Tools</h2>
+
+    <div class="tab">
+        <button class="tablinks" id="WindowsTabsBtn">Windows\Tabs</button>
+        <button class="tablinks" id="PasswordGeneratorBtn">PasswordGenerator</button>
+        <button class="tablinks" id="SettingsBtn">Settings</button>
+        <button class="tablinks" id="AboutBtn">About</button>
+    </div>
+
+    <div id="LandingPage" class="tabcontent">
+        Welcome to Chrome Tools <p id="versionLabelLanding" style="display: inline"></p>.
+    </div>
+
+    <div id="WindowsTabs" class="tabcontent">
+        <table class="winTabTable">
+            <thead>
+                <tr>
+                    <th style="width:100px" ;>Windows</th>
+                    <th style="width:100px" ;>Tabs</th>
+                </tr>
+            </thead>
+            <tbody id="tableList">
+            </tbody>
+        </table>
+
+    </div>
+
+    <div id="PasswordGenerator" class="tabcontent">
+        <div style="width: 100%; display: table; table-layout: auto; border: 1px solid var(--border-color);">
+            <div style="display: table-row; height: 42px;">
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color);">
+                    <p style="font-size: .65em;">Password:</p>
+                </div>
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color); width: 233px;">
+                    <p style="font-size: .65em;" id="generatedPassword"></p>
+                </div>
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color);">
+                    <button type="button" id="generatePasswordButton">Generate Password</button><button style="display: inline" id="copyToClipboardButton" class="btn" title="Copy to clipboard"><i class="fa-thin fa-clipboard"></i></button>
+                </div>
+            </div>
+            <div style="display: table-row; height: 42px;">
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color); ">
+                    <p style="font-size: .65em;">Possible combinations:</p>
+                </div>
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color); width: 233px;">
+                    <p style="font-size: .65em;" id="PossibleCombinationsLabel">0^16(0)</p>
+                </div>
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color);">
+
+                </div>
+            </div>
+            <div style="display: table-row; height: 84px;">
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color);">
+                    <p style="font-size: .65em;">Possible characters:</p>
+                </div>
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color); width: 233px;">
+                    <p style="font-size: .65em;" id="PossibleCharactersLabel">0^16(0)</p>
+                </div>
+                <div style="text-align: center; vertical-align: middle; display: table-cell; border: 1px solid var(--border-color);">
+                </div>
+            </div>
+        </div>
+        <p style="text-align: left;">Settings</p>
+        <div style="width: 100%; display: table; table-layout: auto; border: 1px solid var(--border-color);">
+
+            <!--Allow numbers-->
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: center; display: table-cell; padding: 1px; border: 1px solid var(--border-color); width: 56px; ">
+                    <label class="theme-switch3" for="allownumberscheckbox">
+                        <input type="checkbox" id="allownumberscheckbox" checked />
+                        <div class="slider round" id="allownumbers"></div>
+                    </label>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em>Allow Numbers</em>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                </div>
+            </div>
+
+            <!--Allow letters-->
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: center; display: table-cell; padding: 1px; border: 1px solid var(--border-color); width: 56px;">
+                    <label class="theme-switch4" for="allowletterscheckbox">
+                        <input type="checkbox" id="allowletterscheckbox" checked />
+                        <div class="slider round" id="allowletters"></div>
+                    </label>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em>Allow Letters</em>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                </div>
+            </div>
+
+            <!--Allow special characters-->
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: center; display: table-cell; padding: 1px; border: 1px solid var(--border-color); width: 56px; ">
+                    <label class="theme-switch5" for="allowspecialcharacterscheckbox">
+                        <input type="checkbox" id="allowspecialcharacterscheckbox" checked />
+                        <div class="slider round" id="allowspecialcharacters"></div>
+                    </label>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em>Allow Special Characters</em>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <input type="text" id="specchar" name="specchar" value="!@#$%^&*()_+-=" maxlength="34"><p for="specchar" id="speccharlength" style="display: inline"></p>
+                </div>
+            </div>
+
+            <!--Password length-->
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em>Password Length</em>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <label for="lengthlimit">
+                        <input type="number" id="lengthlimit" min="8" max="32" step="1" value="16" />
+                        <div id="passwordlength"></div>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="Settings" class="tabcontent">
+        <p style="text-align: left;">Display</p>
+        <div style="width: 100%; display: table; table-layout: auto; border: 1px solid var(--border-color);">
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: center; display: table-cell; padding: 1px; border: 1px solid var(--border-color); width: 56px;">
+                    <label class="dark-mode-switch" for="darkmodecheckbox">
+                        <input type="checkbox" id="darkmodecheckbox" />
+                        <div class="slider round" id="darkmode"></div>
+                    </label>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em id="darkmodelabel">Dark Mode Setting</em>
+                </div>
+
+            </div>
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: center; display: table-cell; padding: 1px; border: 1px solid var(--border-color); width: 56px;">
+                    <label class="theme-switch2" for="checkbox2">
+                        <input type="checkbox" id="checkbox2" />
+                        <div class="slider round"></div>
+                    </label>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em>System Dark Mode Setting</em>
+                </div>
+
+            </div>
+
+        </div>
+        <p style="text-align: left;">Development</p>
+        <div style="width: 100%; display: table; table-layout: auto; border: 1px solid var(--border-color);">
+            <div style="display: table-row; height: 15px;">
+                <div style="text-align: center; display: table-cell; padding: 1px; border: 1px solid var(--border-color); width: 56px;">
+                    <label class="dev-mode-switch" for="checkbox3">
+                        <input type="checkbox" id="checkbox3" />
+                        <div class="slider round" id="developmentmode"></div>
+                    </label>
+                </div>
+                <div style="text-align: left; display: table-cell; padding: 1px; border: 1px solid var(--border-color);">
+                    <em>Hidden Borders Setting</em>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+
+    <div id="About" class="tabcontent">
+        <div style="width: 99%; display: table;">
+            <div style="display: table-row; height: 10px;">
+                <div style="text-align: left; width: 33%; display: table-cell;">
+                    <p id="versionLabel"></p>
+                </div>
+            </div>
+            <div style="display: table-row; height: 10px;">
+                <div style="text-align: left; width: 33%; display: table-cell;">
+                    <p>Venmo: @loving_the_pnw</p>
+                </div>
+            </div>
+            <div style="display: table-row; height: 10px;">
+                <div style="text-align: left; width: 33%; display: table-cell;">
+                    <a href="mailto:lancepyles@gmail.com">Submit suggestion</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</body>
+
+</html>
