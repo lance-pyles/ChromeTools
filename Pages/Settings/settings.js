@@ -11,7 +11,7 @@ function getSystemTheme() {
 
 function switchDarkModeSetting() {
 
-    if (localStorage.getItem('userTheme') === 'light') {
+    if (localStorage.getItem('userTheme') != 'dark') {
 
         localStorage.setItem('userTheme', 'dark');
 
