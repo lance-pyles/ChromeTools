@@ -16,7 +16,7 @@
    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjJv+38wVFiNzGqxA31ZfBkIxVbiHrgkuL83jQZhWONRZKIGF+ORtTxLFtRC9Rfwru9dNfe6KByWPKos90OFX0gUsv8dbaBtzm3VNRGsBIcnOjdClnqTnciQ0YVI4TkJFoAxNbVw9MnhnOIR+eGfjEhI/tdd+xwDM2BJp1JKk6Klh5SwJiJSxbxADfPBXxT998K7loOD06zDIt4yhna7xoIP/86m4Da1zMf5vl14EG2EdE+ZZpDpliiRErSoT/0/Ux+3fLryyp7h9lvJbdmzPBlhSOG7r3Q5iU/ekjKvMzS2bwoQFiYnewpYua6N/XQCOh+9EPe85hCGiSun4h58kUwIDAQAB",
    "manifest_version": 3,
    "name": "Chrome Tools",
-   "permissions": [ "tabs" ],
+  "permissions": [ "tabs", "contextMenus" ],
    "update_url": "https://clients2.google.com/service/update2/crx",
    "version": "2022.01.00"
 }
